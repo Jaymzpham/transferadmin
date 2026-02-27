@@ -47,7 +47,7 @@ const EditProfile = () => {
     avatar_url: profilePic,
     role: "",
     age: "",
-    bio: "I'm a professional football player focused on high performance and tactical discipline. Always striving to improve and contribute to the team's success.",
+    bio: "Dynamic left winger with a strong 1v1 profile, aggressive ball progression, and high work rate in transition. Developed in elite Swedish academies and experienced in senior-level football with consistent end product in the final third.\n\nStrengths include off-ball movement between fullback and center-back, quick direction changes, and pressing intensity in high blocks. Comfortable in systems using inverted wide forwards or direct touchline play.\n\nCurrent objective: secure the next step in a top European environment with a clear pathway, competitive minutes, and long-term development support.",
     experience: "Current: AFC United (Div 1)\nPrevious: Brommapojkarna (U19), Vasalunds IF",
     highlights: [
       { category: "Achievement", title: "Top Scorer Division 1", description: "Scored 18 goals in the 2023 season with AFC United." },
@@ -227,7 +227,7 @@ const EditProfile = () => {
       {/* Sidebar is dark by default */}
       <Sidebar />
       
-      <div className="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto bg-[#020617]">
+      <div className="flex-1 flex flex-col">
         {/* Top Header - Dark Mode */}
         <header className="bg-[#0f172a] border-b border-slate-800 h-20 flex items-center justify-between px-8 sticky top-0 z-40">
            <div className="flex items-center gap-4">
@@ -241,8 +241,8 @@ const EditProfile = () => {
            
            <div className="flex items-center gap-4">
               <div className="relative hidden md:block">
-                 <Input className="w-64 h-6 pl-9 bg-slate-900 border-slate-800 rounded-lg text-[11px] text-white placeholder:text-slate-500 focus:border-primary/50 transition-all font-bold" placeholder="Search profiles..." />
-                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-500" />
+                 <Input className="w-64 h-8 pl-9 bg-[#0b1533] border-2 border-primary/80 rounded-xl text-[11px] text-white placeholder:text-white focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-0 focus-visible:border-primary transition-all font-bold shadow-[0_0_0_1px_rgba(34,197,94,0.25)]" placeholder="Search profiles..." />
+                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-primary" />
               </div>
               <div className="h-9 w-9 rounded-full bg-slate-800 border border-slate-700 overflow-hidden shadow-inner ring-2 ring-primary/10">
                  {profile.avatar_url ? (
@@ -325,24 +325,18 @@ const EditProfile = () => {
               
               {/* PRIMARY CONTENT (LEFT) */}
               <div className="lg:col-span-2 space-y-10">
-                {/* Highlights Section - Compact Merit Style */}
+                {/* About Section */}
                 <section className="bg-[#0f172a] rounded-3xl border border-slate-800 shadow-xl p-8 transition-all hover:border-slate-700">
-                   <div className="flex items-center justify-between mb-6">
-                      <h3 className="text-lg font-black text-white uppercase tracking-tighter border-b-2 border-primary pb-1">Career Highlights</h3>
+                   <div className="flex items-center justify-between mb-8">
+                      <h3 className="text-lg font-black text-white uppercase tracking-tighter border-b-2 border-primary pb-1">Athlete Bio</h3>
                    </div>
-                   
-                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      {profile.highlights?.map((item, idx) => (
-                         <div key={idx} className="bg-[#020617] border border-slate-800 p-4 rounded-2xl relative group hover:border-primary/30 transition-all">
-                            <span className="text-[9px] font-black text-primary uppercase tracking-widest block mb-1">
-                               {item.category}
-                            </span>
-                            <h4 className="text-sm font-black text-white leading-tight mb-2">{item.title}</h4>
-                            <p className="text-[10px] text-slate-400 font-medium leading-relaxed">
-                               {item.description}
-                            </p>
-                         </div>
-                      ))}
+                   <div className="space-y-4">
+                      <p className="text-slate-400 text-sm leading-relaxed font-bold">
+                         {profile.bio}
+                      </p>
+                      <button className="text-[10px] font-black text-primary uppercase tracking-[0.2em] flex items-center gap-1.5 mt-8 group">
+                         Technical Report <ChevronRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
+                      </button>
                    </div>
                 </section>
 
@@ -402,18 +396,24 @@ const EditProfile = () => {
                    </div>
                 </section>
 
-                {/* About Section */}
+                {/* Highlights Section - Compact Merit Style */}
                 <section className="bg-[#0f172a] rounded-3xl border border-slate-800 shadow-xl p-8 transition-all hover:border-slate-700">
-                   <div className="flex items-center justify-between mb-8">
-                      <h3 className="text-lg font-black text-white uppercase tracking-tighter border-b-2 border-primary pb-1">Athlete Bio</h3>
+                   <div className="flex items-center justify-between mb-6">
+                      <h3 className="text-lg font-black text-white uppercase tracking-tighter border-b-2 border-primary pb-1">Career Highlights</h3>
                    </div>
-                   <div className="space-y-4">
-                      <p className="text-slate-400 text-sm leading-relaxed font-bold">
-                         {profile.bio}
-                      </p>
-                      <button className="text-[10px] font-black text-primary uppercase tracking-[0.2em] flex items-center gap-1.5 mt-8 group">
-                         Technical Report <ChevronRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
-                      </button>
+
+                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {profile.highlights?.map((item, idx) => (
+                         <div key={idx} className="bg-[#020617] border border-slate-800 p-4 rounded-2xl relative group hover:border-primary/30 transition-all">
+                            <span className="text-[9px] font-black text-primary uppercase tracking-widest block mb-1">
+                               {item.category}
+                            </span>
+                            <h4 className="text-sm font-black text-white leading-tight mb-2">{item.title}</h4>
+                            <p className="text-[10px] text-slate-400 font-medium leading-relaxed">
+                               {item.description}
+                            </p>
+                         </div>
+                      ))}
                    </div>
                 </section>
 

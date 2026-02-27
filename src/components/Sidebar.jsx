@@ -54,54 +54,57 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="hidden lg:flex flex-col w-64 bg-stone-50 border-r border-stone-200 h-screen sticky top-0 shrink-0">
-      <div className="p-6">
-        <Link to="/" className="flex items-center mb-8">
-          <img src={logo} alt="Transfer Admin" className="h-16 w-auto" />
-        </Link>
-        
-        <nav className="space-y-1">
-          {menuItems.map((item) => (
+    <>
+      <div className="hidden lg:block w-64 shrink-0" aria-hidden="true" />
+      <aside className="hidden lg:flex fixed left-0 top-0 z-40 flex-col w-64 h-screen bg-stone-50 border-r border-stone-200 overflow-y-auto">
+        <div className="p-6">
+          <Link to="/" className="flex items-center mb-8">
+            <img src={logo} alt="Transfer Admin" className="h-16 w-auto" />
+          </Link>
+
+          <nav className="space-y-1">
+            {menuItems.map((item) => (
+              <Link
+                key={item.label}
+                to={item.to}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                  location.pathname === item.to
+                    ? "bg-slate-900/5 text-slate-900"
+                    : "text-slate-500 hover:text-slate-900 hover:bg-slate-900/5"
+                }`}
+              >
+                <item.icon className={`h-5 w-5 ${location.pathname === item.to ? "text-primary" : "text-slate-400 group-hover:text-slate-600"}`} />
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        <div className="mt-auto p-6 space-y-1 border-t border-stone-200">
+          {bottomItems.map((item) => (
             <Link
               key={item.label}
               to={item.to}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                location.pathname === item.to 
-                  ? "bg-slate-900/5 text-slate-900" 
+                location.pathname === item.to
+                  ? "bg-slate-900/5 text-slate-900"
                   : "text-slate-500 hover:text-slate-900 hover:bg-slate-900/5"
               }`}
             >
-              <item.icon className={`h-5 w-5 ${location.pathname === item.to ? "text-primary" : "text-slate-400 group-hover:text-slate-600"}`} />
+              <item.icon className="h-5 w-5 text-slate-400" />
               {item.label}
             </Link>
           ))}
-        </nav>
-      </div>
-
-      <div className="mt-auto p-6 space-y-1 border-t border-stone-200">
-        {bottomItems.map((item) => (
-          <Link
-            key={item.label}
-            to={item.to}
-            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-              location.pathname === item.to 
-                ? "bg-slate-900/5 text-slate-900" 
-                : "text-slate-500 hover:text-slate-900 hover:bg-slate-900/5"
-            }`}
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-red-500 hover:bg-red-50 transition-all text-left"
           >
-            <item.icon className="h-5 w-5 text-slate-400" />
-            {item.label}
-          </Link>
-        ))}
-        <button
-          onClick={handleLogout}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-red-500 hover:bg-red-50 transition-all text-left"
-        >
-          <LogOut className="h-5 w-5" />
-          Log Out
-        </button>
-      </div>
-    </div>
+            <LogOut className="h-5 w-5" />
+            Log Out
+          </button>
+        </div>
+      </aside>
+    </>
   );
 };
 
